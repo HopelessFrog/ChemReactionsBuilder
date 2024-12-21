@@ -178,19 +178,9 @@
                                     materialDesign:HintAssist.Hint="Температура смеси"
                                     PreviewTextInput="TempValue_Preview"
                                     PreviewKeyDown="UIElement_OnPreviewKeyDown" />
+          
                                 <TextBox
                                     Grid.Row="1"
-                                    Margin="5"
-                                    Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"
-                                    materialDesign:HintAssist.HintPaddingBrush="White"
-                                    materialDesign:HintAssist.Background="White"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    materialDesign:TextFieldAssist.SuffixText="л/мин"
-                                    materialDesign:HintAssist.Hint="Расход потока"
-                                    PreviewTextInput="CompValue_Preview"
-                                    PreviewKeyDown="UIElement_OnPreviewKeyDown" />
-                                <TextBox
-                                    Grid.Row="2"
                                     Margin="5"
                                     Text="{Binding AllTime}"
                                     materialDesign:HintAssist.HintPaddingBrush="White"
@@ -286,6 +276,7 @@
                                                     </Grid.ColumnDefinitions>
                                                     <TextBox
                                                         Margin="3"
+                                        
                                                         HorizontalAlignment="Right"
                                                         materialDesign:HintAssist.HintPaddingBrush="White"
                                                         materialDesign:HintAssist.Background="White"
@@ -301,7 +292,7 @@
                                                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                                              HorizontalAlignment="Right"
                                                              Text="{Binding Path=Multiplier, StringFormat=E3}"
-                                                             materialDesign:TextFieldAssist.SuffixText=" л/(моль*мин)"
+                                                             materialDesign:TextFieldAssist.SuffixText="{Binding MultSuf}"
                                                              materialDesign:HintAssist.Hint="Предэкспоненциальный множитель" />
                                                 </Grid>
 
@@ -328,26 +319,27 @@
                                 <TextBox
                                     Grid.Row="0"
                                     Margin="5"
-                                    Text="{Binding StepTime}"
+                                    Text="{Binding StepTime,ConverterCulture=ru-RU}"
                                     materialDesign:HintAssist.HintPaddingBrush="White"
                                     materialDesign:HintAssist.Background="White"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     materialDesign:TextFieldAssist.SuffixText="мин"
                                     materialDesign:HintAssist.Hint="Начальный шаг"
-                                    PreviewTextInput="PointCount_Preview"
+                                    PreviewTextInput="CompValue_Preview"
                                     PreviewKeyDown="UIElement_OnPreviewKeyDown" />
                                 <TextBox
                                     Grid.Row="1"
                                     Margin="5"
-                                    Text="{Binding ErrorRequest.MaxError}"
+                                    Text="{Binding ErrorRequest.MaxError,ConverterCulture=ru-RU}"
                                     materialDesign:HintAssist.HintPaddingBrush="White"
                                     materialDesign:HintAssist.Background="White"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     materialDesign:TextFieldAssist.SuffixText="%"
                                     materialDesign:HintAssist.Hint="Допустимая погрешность"
-                                    PreviewTextInput="PointCount_Preview"
+                                    PreviewTextInput="CompValue_Preview"
                                     PreviewKeyDown="UIElement_OnPreviewKeyDown" />
                                 <TextBox
+                  
                                     Grid.Row="2"
                                     Margin="5"
                                     Text="{Binding ErrorRequest.MaxSteps}"

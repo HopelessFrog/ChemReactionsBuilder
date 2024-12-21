@@ -205,7 +205,7 @@ public static class Extensions
         var act = actual.Last();
 
 
-        var error = CalculateLocalError(prev, act);
+        var error = CalculateLocalError(prev, act) * 100;
         result.Error = error;
 
         
@@ -229,11 +229,13 @@ public static class Extensions
     private static double CalculateLocalError(MathNet.Numerics.LinearAlgebra.Vector<double> previous, MathNet.Numerics.LinearAlgebra.Vector<double> current)
     {
         double error = 0;
+        int index = 0;
 
         for (int i = 1; i < previous.Count; i++)
         {
-            double localError = Math.Abs(current[i] - previous[i]);
+            double localError = Math.Abs((current[i] - previous[i]) / current[i]);
             error = Math.Max(error, localError);
+
         }
 
         return error;

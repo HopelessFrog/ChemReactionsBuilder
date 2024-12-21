@@ -66,7 +66,7 @@ public class Export
         rng.Font.Bold = true;
         foreach (Component comp in Components)
         {
-            worksheet.Cells[row, col] = $"C{comp.Name}, моль/л";
+            worksheet.Cells[row, col] = $"{comp.Name}, моль/л";
             rng = worksheet.Cells[row, col] as Excel.Range;
             rng.Font.Bold = true;
             col++;

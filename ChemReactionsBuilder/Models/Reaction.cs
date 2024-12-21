@@ -41,10 +41,14 @@ public partial class Reaction : ObservableObject
         return hashCode.ToHashCode();
     }
 
+
     [ObservableProperty] private int _leftFirst;
     public Component? LeftFirstComp { get; set; }
+    [NotifyPropertyChangedFor(nameof(MultSuf))]
+    [NotifyPropertyChangedFor(nameof(MultSuf))]
     [ObservableProperty] private int _leftSecond;
     public Component? LeftSecondComp { get; set; }
+    [NotifyPropertyChangedFor(nameof(MultSuf))]
     [ObservableProperty] private int _leftThird;
     public Component? LeftThirdComp { get; set; }
     [ObservableProperty] private int _rightFirst;
@@ -55,6 +59,27 @@ public partial class Reaction : ObservableObject
     public Component? RightThirdComp { get; set; }
     public double ActivationEnergy { get; set; }
     public double Multiplier { get; set; }
+
+
+    public string MultSuf => GetSuf();
+
+    private string GetSuf()
+    {
+        var sum = LeftFirst + LeftSecond + LeftThird;
+        switch (sum)
+        {
+            case 0 or 1:
+                return "1/мин";
+            case 2:
+                return "л/(моль*мин)";
+            case 3:
+                return "л^2/(моль^2*мин)";
+            default:
+                return "л/(моль*мин)";
+        }
+
+    }
+
 
     public override string ToString()
     {

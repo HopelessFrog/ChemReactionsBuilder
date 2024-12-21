@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Threading;
 using ChemReactionsBuilder.Extensions;
 using ChemReactionsBuilder.Models;
-using ChemReactionsBuilder.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
@@ -96,7 +95,6 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ExportToExcelCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ViewDataCommand))]
     private Export? _export = null;
 
     public Axis[] YAxes => [new() { Name = "Концентрация компонента, моль/л" }];
@@ -288,7 +286,7 @@ public partial class MainViewModel : ObservableObject
             using Process proc = Process.GetCurrentProcess();
             MessageBox.Show(
                 $"Время = {stopwatch.ElapsedMilliseconds} мс \n" +
-                $"Погрешность {ErrorResult.Error} %\n" +
+                $"Погрешность {Math.Round( ErrorResult.Error,4)} %\n" +
                 $"Шаг = {ErrorResult.Step} мин\n" +
                 $"RAM = {Math.Round((double)(proc.PrivateMemorySize64 / (1024 * 1024)), 2)} МБ\n" +
                 $"Делений = {ErrorResult.StepsCount}",
@@ -300,7 +298,7 @@ public partial class MainViewModel : ObservableObject
         {
             MessageBox.Show(e.Message
                 ,
-                "Erro",
+                "Ошибка",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             stopwatch.Stop();
@@ -334,10 +332,5 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [RelayCommand(CanExecute = nameof(CanExport))]
-    private void ViewData()
-    {
-        if (Export is null) return;
-        new CalculationWindow(Export).ShowDialog();
-    }
+   
 }

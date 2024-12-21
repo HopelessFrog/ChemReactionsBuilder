@@ -36,7 +36,7 @@ public partial class MainWindow : Window
 
     }
     
-    private static readonly Regex _reg = new Regex("[^A-Z,0-9,-,>,+]+");
+    private static readonly Regex _reg = new Regex("[^A-Z,0-9,>,+,-]+");
     private static readonly Regex _posRegDouble = new Regex("[^0-9,]+");
     private static readonly Regex _posNegDouble = new Regex("[^0-9,-]+");
     private static readonly Regex _posRegInt = new Regex("[^0-9]+");
