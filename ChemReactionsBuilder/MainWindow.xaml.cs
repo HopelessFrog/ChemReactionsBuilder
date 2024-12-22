@@ -135,6 +135,8 @@ public partial class MainWindow : Window
 
     private void InicializeTable(Export export)
     {
+        Data.Columns.Clear();
+        Data.Items.Clear();
         DataTable dt = new();
         List<string> cols = ["Время, мин"];
         foreach (var comp in export.Components)
@@ -151,7 +153,7 @@ public partial class MainWindow : Window
             Data.Columns.Add(column);
         }
 
-        for (int i = 0; i < (int)(export.Time / export.StepTime); i++)
+        for (int i = 0; i < (int)(export.Values[0].Length); i++)
         {
             dynamic row = new ExpandoObject();
             for (int j = 0; j < cols.Count; j++)
