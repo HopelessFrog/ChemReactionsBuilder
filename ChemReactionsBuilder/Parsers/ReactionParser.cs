@@ -40,6 +40,17 @@ public static class ReactionParser
         var leftSide = ParseSide(parts[0]);
         var rightSide = ParseSide(parts[1]);
 
+
+        var temp = 0;
+        foreach (var comp in leftSide)
+        {
+            temp += comp.Coefficient;
+        }
+
+        if (temp > 3)
+            throw new ArgumentException("Sum of the coefficients on the left side cannot be greater than 3");
+            
+
         return new ParsedReaction()
         {
             LeftSide = leftSide,
@@ -55,6 +66,10 @@ public static class ReactionParser
 
         if (components.Length > 3)
             throw new ArgumentException("Each side of the reaction can have at most 3 components.");
+
+        var temp = 0;
+
+      
 
         // Заполнение пустых слотов, если компонентов меньше 3
         var paddedComponents = components

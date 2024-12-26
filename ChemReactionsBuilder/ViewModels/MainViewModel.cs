@@ -115,8 +115,8 @@ public partial class MainViewModel : ObservableObject
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+           MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+           return;
         }
 
         var components = new List<string>();
